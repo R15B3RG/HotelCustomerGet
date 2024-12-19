@@ -39,7 +39,7 @@ app.MapGet("/customers", async (HttpContext context) =>
     };
 
     // Forward the request to the repository service
-    var response = await httpClient.GetAsync($"/rooms?start={start}&count={count}");
+    var response = await httpClient.GetAsync($"/customers?start={start}&count={count}");
     if (!response.IsSuccessStatusCode)
     {
         return Results.StatusCode((int)response.StatusCode);
