@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://0.0.0.0:4952");
+builder.WebHost.UseUrls("http://0.0.0.0:6952");
 
 builder.Services
     .AddCors(options =>
@@ -8,7 +8,7 @@ builder.Services
             "Customer",
             policy =>
                 policy
-                    .WithOrigins("https://localhost:7151", "https://localhost:7173")
+                    .WithOrigins("https://localhost:7777")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
@@ -32,7 +32,7 @@ app.MapGet("/customers", async (HttpContext context) =>
         return Results.BadRequest("Invalid 'start' or 'count' query parameter.");
     }
 
-    var repoUri = Environment.GetEnvironmentVariable("REPO_URI") ?? "http://repo:5050";
+    var repoUri = Environment.GetEnvironmentVariable("REPO_URI") ?? "http://customers-repo:6050";
     using var httpClient = new HttpClient
     {
         BaseAddress = new Uri(repoUri)
